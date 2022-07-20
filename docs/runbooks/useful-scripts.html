@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Useful scripts - MoJ Modernisation Platform</title>
+
+    <link href="../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://user-guide.modernisation-platform.service.justice.gov.uk/runbooks/useful-scripts.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="user-guide.modernisation-platform.service.justice.gov.uk" />
+      <meta name="twitter:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Useful scripts - MoJ Modernisation Platform" />
+      <meta name="twitter:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/runbooks/useful-scripts.html" />
+
+      <meta property="og:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="MoJ Modernisation Platform" />
+      <meta property="og:title" content="Useful scripts" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/runbooks/useful-scripts.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          MoJ Modernisation Platform
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/modernisation-platform">Home</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://github.com/ministryofjustice/modernisation-platform">GitHub</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://mojdt.slack.com/archives/C01A7QK5VM1">Slack</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="../">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://user-guide.modernisation-platform.service.justice.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#useful-scripts"><span>Useful scripts</span></a>
+    <ul>
+      <li>
+        <a href="#git-scripts"><span>Git scripts</span></a>
+      </li>
+      <li>
+        <a href="#terraform-scripts"><span>Terraform scripts</span></a>
+        <ul>
+          <li>
+            <a href="#general-use"><span>General use</span></a>
+          </li>
+          <li>
+            <a href="#specific-use"><span>Specific use</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#other-scripts"><span>Other Scripts</span></a>
+        <ul>
+          <li>
+            <a href="#environment-provisioning"><span>Environment Provisioning</span></a>
+          </li>
+          <li>
+            <a href="#internal-scripts"><span>Internal scripts</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="useful-scripts">Useful scripts</h1>
+<p>In the Modernisation Platform repository, we have some <a href="https://github.com/ministryofjustice/modernisation-platform/tree/main/scripts">useful scripts</a> to:</p>
+
+<ul>
+<li>help with day-to-day tasks whilst working on the Modernisation Platform</li>
+<li>map common functions to work in CI/CD</li>
+</ul>
+<h2 id="git-scripts">Git scripts</h2>
+<p>The scripts prefixed <code>git-</code> are for running common <code>git</code> commands as part of CI/CD.</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Filename</th>
+<th>Description</th>
+<th>Used in CI/CD?</th>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/git-setup.sh"><code>git-setup.sh</code></a></td>
+<td>Configures <code>git</code> with the <a href="https://github.com/modernisation-platform-ci">modernisation-platform-ci</a> GitHub user</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/new-environment-files.yml#L21">example</a>
+</td>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/git-commit.sh"><code>git-commit.sh</code></a></td>
+<td>Checks out a branch named <code>date-${epoch-time}</code> and commits files changed in the provided path</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/new-environment-files.yml#L21">example</a>
+</td>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/git-pull-request.sh"><code>git-pull-request.sh</code></a></td>
+<td>Creates a pull request back to <code>main</code> from the current checked out branch</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/new-environment-files.yml#L21">example</a>
+</td>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/update-pr-comments.sh"><code>update-pr-comments.sh</code></a></td>
+<td>Add a comment to a pull request</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/core-vpc-development-deployment.yml#L57">example</a>
+</td>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/generate-dependabot-file.sh"><code>generate-dependatbot-file.sh</code></a></td>
+<td>Keeps <code>dependabot.yml</code> up to date with module dependencies</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/core-vpc-development-deployment.yml#L34">example</a>
+</td>
+</tr>
+        </table>
+      </div><h2 id="terraform-scripts">Terraform scripts</h2>
+<p>The scripts prefixed <code>terraform-</code> are for running common <code>terraform</code> commands as part of CI/CD.</p>
+<h3 id="general-use">General use</h3>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Filename</th>
+<th>Description</th>
+<th>Used in CI/CD?</th>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/terraform-init.sh"><code>terraform-init.sh</code></a></td>
+<td>Runs <code>terraform init</code> in the provided path with appropriate flags set for CI/CD</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/new-environment.yml#L29">example</a>
+</td>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/terraform-plan.sh"><code>terraform-plan.sh</code></a></td>
+<td>Runs <code>terraform plan</code> in the provided path with appropriate flags set for CI/CD, and redacts the output (see <a href="#specific-use">redact-output.sh</a>)</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/new-environment.yml#L29">example</a>
+</td>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/terraform-apply.sh"><code>terraform-apply.sh</code></a></td>
+<td>Runs <code>terraform apply</code> in the provided path with appropriate flags set for CI/CD, and redacts the output (see <a href="#specific-use">redact-output.sh</a>)</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/new-environment.yml#L29">example</a>
+</td>
+</tr>
+        </table>
+      </div><h3 id="specific-use">Specific use</h3>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Filename</th>
+<th>Description</th>
+<th>Used in CI/CD?</th>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/redact-output.sh"><code>redact-output.sh</code></a></td>
+<td>Runs <code>sed</code> to redact values from <code>terraform plan</code> and <code>terraform apply</code>
+</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/terraform-apply.sh#L17">example</a>
+</td>
+</tr>
+        </table>
+      </div><h2 id="other-scripts">Other Scripts</h2>
+<h3 id="environment-provisioning">Environment Provisioning</h3>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Filename</th>
+<th>Description</th>
+<th>Used in CI/CD?</th>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/provision-terraform-workspaces.sh"><code>provision-terraform-workspaces.sh</code></a></td>
+<td>Runs <code>terraform workspace new ${application-name}-${environment}</code> in the provided directory</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/new-environment.yml#L36">example</a>
+</td>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/loop-through-terraform-workspaces.sh"><code>loop-through-terraform-workspaces.sh</code></a></td>
+<td>Runs <code>terraform plan</code> or <code>apply</code> across all remote <code>terraform workspaces</code> in the provided directory</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/new-environment.yml#L39">example</a>
+</td>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/provision-environment-directories.sh"><code>provision-environment-directories.sh</code></a></td>
+<td>Copies <code>templates/*.tf</code> files to an environment directory when a new environment is created</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/new-environment-files.yml#L20">example</a>
+</td>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/provision-member-directories.sh"><code>provision-member-directories.sh</code></a></td>
+<td>Copies <code>templates/*.tf</code> files to the <a href="https://github.com/ministryofjustice/modernisation-platform-environments">member environment repository</a> when a new environment is created</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/new-member-environment-files.yml#L31">example</a>
+</td>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/member-account-ram-association.sh"><code>member-account-ram-association.sh</code></a></td>
+<td>Creates networking RAM associations when new networking is created</td>
+<td>✅ <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/.github/workflows/core-vpc-development-deployment.yml#L105">example</a>
+</td>
+</tr>
+        </table>
+      </div><h3 id="internal-scripts">Internal scripts</h3>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Filename</th>
+<th>Description</th>
+<th>Used in CI/CD?</th>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/internal/upgrade-terraform-providers.sh"><code>internal/upgrade-terraform-providers.sh</code></a></td>
+<td>This script looks for any directory that holds a <code>*.tf</code> file, unless it&rsquo;s a <code>.terraform</code> directory or is the <code>templates/</code> directory, and runs <code>terraform init -upgrade</code> within them. It&rsquo;s useful for bulk-updating all of the Terraform providers and modules in one go</td>
+<td>❌</td>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/scripts/internal/find-terraform-workspace.sh"><code>internal/find-terraform-workspace.sh</code></a></td>
+<td>This script finds terraform workspaces for an environment when it needs to be <a href="deleting-an-environment.html">deleted</a>
+</td>
+<td>❌</td>
+</tr><tr>
+<td><a href="https://github.com/ministryofjustice/modernisation-platform/tree/main/scripts/internal/get-testing-ci-user-creds"><code>internal/get-testing-ci-user-creds/get_testing_creds.go</code></a></td>
+<td>This script retrieves the testing-ci user credentials for use when running tests locally</td>
+<td>❌</td>
+</tr>
+        </table>
+      </div>
+              <div data-module='page-expiry' data-last-reviewed-on="2023-01-20">
+    <div class='page-expiry--not-expired'>
+      This page was last reviewed on 20 July 2022.
+
+        It needs to be reviewed again on 20 January 2023
+        by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>
+        .
+    </div>
+
+    <div class='page-expiry--expired'>
+      This page was set to be reviewed before 20 January 2023
+       by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>.
+      This might mean the content is out of date.
+    </div>
+  </div>
+
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/source/runbooks/useful-scripts.html.md.erb">View source</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/issues/new?body=Problem+with+%27Useful+scripts%27+%28https%3A%2F%2Fuser-guide.modernisation-platform.service.justice.gov.uk%2Frunbooks%2Fuseful-scripts.html%29&amp;labels=bug&amp;title=Re%3A+%27Useful+scripts%27">Report problem</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../javascripts/application.js"></script>
+  </body>
+</html>

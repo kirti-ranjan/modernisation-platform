@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Disaster Recovery - MoJ Modernisation Platform</title>
+
+    <link href="../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://user-guide.modernisation-platform.service.justice.gov.uk/runbooks/disaster-recovery.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="user-guide.modernisation-platform.service.justice.gov.uk" />
+      <meta name="twitter:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Disaster Recovery - MoJ Modernisation Platform" />
+      <meta name="twitter:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/runbooks/disaster-recovery.html" />
+
+      <meta property="og:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="MoJ Modernisation Platform" />
+      <meta property="og:title" content="Disaster Recovery" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/runbooks/disaster-recovery.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          MoJ Modernisation Platform
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/modernisation-platform">Home</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://github.com/ministryofjustice/modernisation-platform">GitHub</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://mojdt.slack.com/archives/C01A7QK5VM1">Slack</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="../">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://user-guide.modernisation-platform.service.justice.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#disaster-recovery"><span>Disaster Recovery</span></a>
+    <ul>
+      <li>
+        <a href="#what-does-the-modernisation-platform-offer-in-terms-of-disaster-recovery"><span>What does the Modernisation Platform offer in terms of Disaster Recovery?</span></a>
+      </li>
+      <li>
+        <a href="#what-isn-39-t-covered-by-the-modernisation-platform"><span>What isn’t covered by the Modernisation Platform?</span></a>
+      </li>
+      <li>
+        <a href="#backups-and-restores"><span>Backups and restores</span></a>
+      </li>
+      <li>
+        <a href="#how-will-we-know-if-there-is-a-disaster-in-progress"><span>How will we know if there is a Disaster in progress?</span></a>
+      </li>
+      <li>
+        <a href="#how-do-i-access-these-services-if-we-have-a-problem-or-if-we-have-any-questions"><span>How do I access these services if we have a problem or if we have any questions?</span></a>
+      </li>
+      <li>
+        <a href="#how-will-we-deal-with-an-incident"><span>How will we deal with an incident?</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="disaster-recovery">Disaster Recovery</h1>
+<p>The purpose of this section of the guide is to clarify what the Modernisation Platform offers in terms of disaster recovery, the processes to initiate different types of recovery, and roles and responsibilities of the Modernisation Platform and Service Teams.</p>
+<h2 id="what-does-the-modernisation-platform-offer-in-terms-of-disaster-recovery">What does the Modernisation Platform offer in terms of Disaster Recovery?</h2>
+<p>Modernisation Platform is provided to Service Teams as a managed service. To ensure business continuity, Modernisation Platform has a disaster recovery plan that facilitates quick recovery. Recovery plans have been tested and documented in the <a href="../#runbooks">runbooks</a> for the following scenarios:</p>
+
+<ul>
+<li>Complete loss of the platform</li>
+<li>Loss of an AWS account</li>
+<li>Loss of networking</li>
+</ul>
+<p>Other failures which will not affect the availability of an application, but will impact a team&rsquo;s ability to deploy:</p>
+
+<ul>
+<li>Loss of Terraform state</li>
+<li>Loss of access</li>
+<li>Loss of Github Actions</li>
+<li>Loss of Github</li>
+</ul>
+<p>In the case of all of the above the Modernisation Platform Team is responsible for recovery or raising incidents</p>
+<p><em>However, in the event of the loss of the platform or AWS account we may require Service Teams to redeploy their services. This includes redeploying applications, restoring from backups, and any further manual steps required.</em></p>
+<p>The Modernisation Platform Team is continually reviewing and identifying risks to our users and the platform. As each threat is identified we are testing and creating recovery plans.</p>
+<h2 id="what-isn-39-t-covered-by-the-modernisation-platform">What isn&rsquo;t covered by the Modernisation Platform?</h2>
+
+<ul>
+<li>Loss or fault of infrastructure created in the member account that is not provided by the Modernisation Platform (anything other than the account baselines and SSO)</li>
+<li>Restoration of member infrastructure backups.</li>
+<li>Non production backups, or backups outside of the Modernisation Platform <a href="../concepts/environments/backups.html">backup coverage</a>.</li>
+<li>Redeployment of applications - The Modernisation Platform doesn&rsquo;t manage member application deployment pipelines. If there is a need to deploy a service as part of any restoration you will be asked to do so by the Modernisation Platform Team.</li>
+<li>Only retain AWS RDS Snapshots for as long as they are required. Please clean-up any snapshots regularly.</li>
+<li>3rd party managed services (e.g. Github, CircleCI, Sentry.io) - These 3rd party managed services will offer some form of back-up and recovery as part of their managed service, however these processes are out of the scope of recovery by the Modernisation Platform. If you need more information please contact <a href="https://mojdt.slack.com/archives/C01BUKJSZD4">#ask-operations-engineering</a>. </li>
+<li>Ensure your <code>owner</code> tag is kept up to date so that the Modernisation Platform Team knows how best to contact your team.</li>
+<li>Ensure your team is added to the <a href="https://mojdt.slack.com/archives/C02L5MCJ12N">#modernisation-platform-update</a> slack channel so that you can ensure you receive important messages from the Modernisation Platform Team.</li>
+</ul>
+<h2 id="backups-and-restores">Backups and restores</h2>
+<p>Backup information can be found on our <a href="../concepts/environments/backups.html">backup page</a>.
+Restores to backed up snapshots are the responsibility of the application teams.</p>
+<h2 id="how-will-we-know-if-there-is-a-disaster-in-progress">How will we know if there is a Disaster in progress?</h2>
+<p>If there is a wider issue with the platform we will notify all users via <a href="https://mojdt.slack.com/archives/C02L5MCJ12N">#modernisation-platform-update</a> channel in line with our operational processes. You should check <a href="https://mojdt.slack.com/archives/C02L5MCJ12N">#modernisation-platform-update</a> for periodic status updates.</p>
+<p>If we identify a specific issue relating to a single service we will contact the team via the <code>owner</code> tag detailed in your application tags.</p>
+<h2 id="how-do-i-access-these-services-if-we-have-a-problem-or-if-we-have-any-questions">How do I access these services if we have a problem or if we have any questions?</h2>
+<p>Please contact us over at <a href="https://mojdt.slack.com/archives/C01A7QK5VM1">#ask-modernisation-platform</a> slack channel.</p>
+<h2 id="how-will-we-deal-with-an-incident">How will we deal with an incident?</h2>
+<p>See here our <a href="general-incident.html">general incident runbook</a></p>
+
+              <div data-module='page-expiry' data-last-reviewed-on="2022-09-30">
+    <div class='page-expiry--not-expired'>
+      This page was last reviewed on 31 March 2022.
+
+        It needs to be reviewed again on 30 September 2022
+        by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>
+        .
+    </div>
+
+    <div class='page-expiry--expired'>
+      This page was set to be reviewed before 30 September 2022
+       by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>.
+      This might mean the content is out of date.
+    </div>
+  </div>
+
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/source/runbooks/disaster-recovery.html.md.erb">View source</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/issues/new?body=Problem+with+%27Disaster+Recovery%27+%28https%3A%2F%2Fuser-guide.modernisation-platform.service.justice.gov.uk%2Frunbooks%2Fdisaster-recovery.html%29&amp;labels=bug&amp;title=Re%3A+%27Disaster+Recovery%27">Report problem</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../javascripts/application.js"></script>
+  </body>
+</html>

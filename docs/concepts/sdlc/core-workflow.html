@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Core Workflow (CI/CD) - MoJ Modernisation Platform</title>
+
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://user-guide.modernisation-platform.service.justice.gov.uk/concepts/sdlc/core-workflow.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="user-guide.modernisation-platform.service.justice.gov.uk" />
+      <meta name="twitter:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Core Workflow (CI/CD) - MoJ Modernisation Platform" />
+      <meta name="twitter:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/concepts/sdlc/core-workflow.html" />
+
+      <meta property="og:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="MoJ Modernisation Platform" />
+      <meta property="og:title" content="Core Workflow (CI/CD)" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/concepts/sdlc/core-workflow.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          MoJ Modernisation Platform
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/modernisation-platform">Home</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://github.com/ministryofjustice/modernisation-platform">GitHub</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://mojdt.slack.com/archives/C01A7QK5VM1">Slack</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="../../">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://user-guide.modernisation-platform.service.justice.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#core-workflow-ci-cd"><span>Core Workflow (CI/CD)</span></a>
+    <ul>
+      <li>
+        <a href="#introduction"><span>Introduction</span></a>
+      </li>
+      <li>
+        <a href="#ci-cd"><span>CI/CD</span></a>
+        <ul>
+          <li>
+            <a href="#terraform-workflows"><span>Terraform workflows</span></a>
+          </li>
+          <li>
+            <a href="#new-member-file-creation-workflows"><span>New member file creation workflows</span></a>
+          </li>
+          <li>
+            <a href="#other-workflows"><span>Other workflows</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="core-workflow-ci-cd">Core Workflow (CI/CD)</h1>
+<h2 id="introduction">Introduction</h2>
+<p>We use <a href="https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development">trunk base development</a> in the Modernisation Platform, with all platform infrastructure stored in the <a href="https://github.com/ministryofjustice/modernisation-platform">modernisation-platform</a> repository.</p>
+<h2 id="ci-cd">CI/CD</h2>
+<p>For our CI/CD pipelines we use <a href="https://docs.github.com/en/actions">GitHub actions</a>.</p>
+<p>Workflow files are found <a href="https://github.com/ministryofjustice/modernisation-platform/tree/main/.github/workflows">here</a></p>
+<h3 id="terraform-workflows">Terraform workflows</h3>
+<p>Workflows which create terraform resources in our core accounts and creates new member accounts.</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Name</th>
+<th>Description</th>
+<th>Terraform location</th>
+<th>Workflow file</th>
+</tr><tr>
+<td>Modernisation Platform account</td>
+<td>Creates key resources such as S3 state buckets for the platform</td>
+<td><code>terraform/modernisation-platform-account</code></td>
+<td>Manually run</td>
+</tr><tr>
+<td>Environment creation</td>
+<td>Creates member OUs and accounts</td>
+<td><code>terraform/environments</code></td>
+<td><code>new-environment.yml</code></td>
+</tr><tr>
+<td>Core Logging</td>
+<td>Creates the core logging account resources</td>
+<td><code>terraform/environments/core-logging</code></td>
+<td><code>core-logging-deployment.yml</code></td>
+</tr><tr>
+<td>Core Networking</td>
+<td>Creates the core networking account resources</td>
+<td><code>terraform/environments/core-networking</code></td>
+<td><code>core-networking-deployment.yml</code></td>
+</tr><tr>
+<td>Core Security</td>
+<td>Creates the core security account resources</td>
+<td><code>terraform/environments/core-security</code></td>
+<td><code>core-security-deployment.yml</code></td>
+</tr><tr>
+<td>Core Shared Services</td>
+<td>Creates the core shared services account resources</td>
+<td><code>terraform/environments/shared-services</code></td>
+<td><code>core-shared-services-deployment.yml</code></td>
+</tr><tr>
+<td>Core VPC</td>
+<td>Creates the core VPC resources in the VPC accounts</td>
+<td><code>terraform/environments/core-vpc</code></td>
+<td>
+<code>core-vpc-development-deployment.yml</code>,<code>core-vpc-test-deployment.yml</code>,<code>core-vpc-preproduction-deployment.yml</code>,<code>core-vpc-production-deployment.yml</code>
+</td>
+</tr><tr>
+<td>GitHub Terraform</td>
+<td>Creates the GitHub teams and repositories in GitHub</td>
+<td><code>terraform/github</code></td>
+<td><code>terraform-github.yml</code></td>
+</tr><tr>
+<td>PagerDuty</td>
+<td>Creates PagerDuty teams, users, services and schedules</td>
+<td>&lsquo;terraform/pagerduty&rsquo;</td>
+<td><code>terraform-pagerduty.yml</code></td>
+</tr>
+        </table>
+      </div><h3 id="new-member-file-creation-workflows">New member file creation workflows</h3>
+<p>These workflows create the new files needed for new member accounts.</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Name</th>
+<th>Description</th>
+<th>Workflow file</th>
+</tr><tr>
+<td>New environment files</td>
+<td>Creates new files in the modernisation-platform repository</td>
+<td><code>new-environment-files</code></td>
+</tr><tr>
+<td>New member environment files</td>
+<td>Creates new files in the modernisation-platform-environments repository, also creates the GitHub environments</td>
+<td><code>new-member-environment-files</code></td>
+</tr>
+        </table>
+      </div><h3 id="other-workflows">Other workflows</h3>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Name</th>
+<th>Description</th>
+<th>Workflow file</th>
+</tr><tr>
+<td>Check links</td>
+<td>Checks links are valid in our GitHub pages user guidance</td>
+<td><code>check-links.yml</code></td>
+</tr><tr>
+<td>Publish</td>
+<td>Publishes pages in <code>source</code> to our GitHub pages user guidance</td>
+<td><code>publish.yml</code></td>
+</tr><tr>
+<td>Format Code</td>
+<td>Formats code and commits any changes to a pull request</td>
+<td><code>format-code.yml</code></td>
+</tr><tr>
+<td>Labeler</td>
+<td>Adds labels to our pull requests depending on which folders are changed</td>
+<td><code>labeler.yml</code></td>
+</tr><tr>
+<td>OPA Policies</td>
+<td>Runs Open Policy Agent validation tests against our json files</td>
+<td><code>opa-policies.yml</code></td>
+</tr><tr>
+<td>Sheduled Baseline</td>
+<td>Runs the baseline code across all accounts ensuring security baselines are still in place</td>
+<td><code>scheduled-baseline.yml</code></td>
+</tr><tr>
+<td>Terraform Static Code Analysis</td>
+<td>Runs TFSEC, Checkov and TFlint against all Terraform code</td>
+<td><code>terraform-static-analysis.yml</code></td>
+</tr><tr>
+<td>Generate Dependabot File</td>
+<td>Generates a new dependabot file to add any newly added Terraform folders</td>
+<td><code>generate-dependabot-file.yml</code></td>
+</tr><tr>
+<td>Add issues to project</td>
+<td>On new modernisation-plaform repository issue creation adds the new issue to the Modernisation Platform project</td>
+<td><code>add-issues-to-project.yml</code></td>
+</tr><tr>
+<td>Terraform Documentation</td>
+<td>Generates Terraform module documentation</td>
+<td><code>documentation.yml</code></td>
+</tr>
+        </table>
+      </div>
+              <div data-module='page-expiry' data-last-reviewed-on="2022-11-24">
+    <div class='page-expiry--not-expired'>
+      This page was last reviewed on 24 May 2022.
+
+        It needs to be reviewed again on 24 November 2022
+        by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>
+        .
+    </div>
+
+    <div class='page-expiry--expired'>
+      This page was set to be reviewed before 24 November 2022
+       by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>.
+      This might mean the content is out of date.
+    </div>
+  </div>
+
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/source/concepts/sdlc/core-workflow.html.md.erb">View source</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/issues/new?body=Problem+with+%27Core+Workflow+%28CI%2FCD%29%27+%28https%3A%2F%2Fuser-guide.modernisation-platform.service.justice.gov.uk%2Fconcepts%2Fsdlc%2Fcore-workflow.html%29&amp;labels=bug&amp;title=Re%3A+%27Core+Workflow+%28CI%2FCD%29%27">Report problem</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../javascripts/application.js"></script>
+  </body>
+</html>

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Modernisation Platform Runbook - MoJ Modernisation Platform</title>
+
+    <link href="../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://user-guide.modernisation-platform.service.justice.gov.uk/runbooks/runbook.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="user-guide.modernisation-platform.service.justice.gov.uk" />
+      <meta name="twitter:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Modernisation Platform Runbook - MoJ Modernisation Platform" />
+      <meta name="twitter:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/runbooks/runbook.html" />
+
+      <meta property="og:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="MoJ Modernisation Platform" />
+      <meta property="og:title" content="Modernisation Platform Runbook" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/runbooks/runbook.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          MoJ Modernisation Platform
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/modernisation-platform">Home</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://github.com/ministryofjustice/modernisation-platform">GitHub</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://mojdt.slack.com/archives/C01A7QK5VM1">Slack</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="../">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://user-guide.modernisation-platform.service.justice.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#modernisation-platform-runbook"><span>Modernisation Platform Runbook</span></a>
+    <ul>
+      <li>
+        <a href="#description"><span>Description</span></a>
+      </li>
+      <li>
+        <a href="#service-urls"><span>Service URLs</span></a>
+      </li>
+      <li>
+        <a href="#incident-response-hours"><span>Incident response hours</span></a>
+      </li>
+      <li>
+        <a href="#incident-contact-details"><span>Incident contact details</span></a>
+      </li>
+      <li>
+        <a href="#service-team-contact"><span>Service team contact</span></a>
+      </li>
+      <li>
+        <a href="#hosting-environment"><span>Hosting environment</span></a>
+      </li>
+      <li>
+        <a href="#other-urls"><span>Other URLs</span></a>
+      </li>
+      <li>
+        <a href="#automatic-alerts"><span>Automatic alerts</span></a>
+      </li>
+      <li>
+        <a href="#impact-of-an-outage"><span>Impact of an outage</span></a>
+      </li>
+      <li>
+        <a href="#out-of-hours-response"><span>Out of hours response</span></a>
+      </li>
+      <li>
+        <a href="#consumers-of-this-service"><span>Consumers of this service</span></a>
+      </li>
+      <li>
+        <a href="#restrictions-on-access"><span>Restrictions on access</span></a>
+      </li>
+      <li>
+        <a href="#how-to-resolve-specific-issues"><span>How to resolve specific issues</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="modernisation-platform-runbook">Modernisation Platform Runbook</h1>
+<h2 id="description">Description</h2>
+<p>The Modernisation Platform is a hosting platform where Ministry of Justice teams can host and modernise applications.
+It is a collection of AWS accounts, with shared networking, common security baselines and shared features such as single sign on.
+For more information on the platform see the <a href="../">user-guidance</a> and our main <a href="https://github.com/ministryofjustice/modernisation-platform">modernisation-platform</a> GitHub repository.</p>
+<h2 id="service-urls">Service URLs</h2>
+<p>There are no service URLs for the platform itself, public facing services which are hosted on the platform will have their own runbooks with this information.</p>
+<h2 id="incident-response-hours">Incident response hours</h2>
+<p>9am-5pm</p>
+<h2 id="incident-contact-details">Incident contact details</h2>
+<p>Please post in the Slack channel <a href="https://mojdt.slack.com/archives/C01A7QK5VM1">#ask-modernisation-platform</a></p>
+<h2 id="service-team-contact">Service team contact</h2>
+<p>Please post in the Slack channel <a href="https://mojdt.slack.com/archives/C01A7QK5VM1">#ask-modernisation-platform</a></p>
+<h2 id="hosting-environment">Hosting environment</h2>
+<p>The Modernisation Platform is hosted on AWS, under the Ministry of Justice AWS organisation.  Support requests should be raised in the account that they affect, see <a href="https://docs.aws.amazon.com/awssupport/latest/user/case-management.html">here</a> how to raise a support request.</p>
+<h2 id="other-urls">Other URLs</h2>
+<p>Main GitHub repository - <a href="https://github.com/ministryofjustice/modernisation-platform">https://github.com/ministryofjustice/modernisation-platform</a></p>
+<h2 id="automatic-alerts">Automatic alerts</h2>
+<p>Automated alerts will appear in the <a href="https://mojdt.slack.com/archives/C02PFCG8M1R">#modernisation-platform-alarms</a> channel.</p>
+<h2 id="impact-of-an-outage">Impact of an outage</h2>
+<p>If the Modernisation Platform is down, applications hosted on the platform may not be accessible.</p>
+<p>Issues with the following core platform services will impact users in the following ways:</p>
+<div class="table-container">
+        <table>
+          <tr>
+<th>Issue</th>
+<th>Impact</th>
+<th>Link to relevant runbook</th>
+</tr><tr>
+<td>core-vpc networking or RAM share failure</td>
+<td>Networking for the accounts under the affected business unit will fail.</td>
+<td>TBC</td>
+</tr><tr>
+<td>Transit Gateway failure</td>
+<td>Applications will not be able to communicate with the core accounts, the NAT Gateway, other business units or the wider MoJ</td>
+<td>TBC</td>
+</tr><tr>
+<td>GitHub or GitHub Actions failure</td>
+<td>Users will not be able to push code or deploy to environments</td>
+<td>TBC</td>
+</tr>
+        </table>
+      </div><h2 id="out-of-hours-response">Out of hours response</h2>
+<p>There is currently no out of hours response.</p>
+<h2 id="consumers-of-this-service">Consumers of this service</h2>
+<p>Applications hosted on the platform and their details can be found <a href="https://github.com/ministryofjustice/modernisation-platform/tree/main/environments">here</a>. They are the &ldquo;member&rdquo; account types.</p>
+<h2 id="restrictions-on-access">Restrictions on access</h2>
+<p>Access to the AWS accounts is managed via <a href="https://github.com/ministryofjustice/modernisation-platform/tree/main/terraform/environments/bootstrap/single-sign-on">AWS SSO</a> for users who are part of the Ministry of Justice GitHub organisation.  External collaborators are detailed <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/collaborators.json">here</a>.
+If SSO fails, platform engineers can access via the <a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/terraform/modernisation-platform-account/iam.tf#L1">superadmin</a> users.</p>
+<h2 id="how-to-resolve-specific-issues">How to resolve specific issues</h2>
+<p>Please see the disaster recover runbook (TBC) for high priority issues. For non priority tasks please see our <a href="../#runbooks">runbooks</a> for platform tasks or <a href="../#how-to-guides">how to guides</a> for user tasks.</p>
+
+              <div data-module='page-expiry' data-last-reviewed-on="2022-09-24">
+    <div class='page-expiry--not-expired'>
+      This page was last reviewed on 24 March 2022.
+
+        It needs to be reviewed again on 24 September 2022
+        by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>
+        .
+    </div>
+
+    <div class='page-expiry--expired'>
+      This page was set to be reviewed before 24 September 2022
+       by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>.
+      This might mean the content is out of date.
+    </div>
+  </div>
+
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/source/runbooks/runbook.html.md.erb">View source</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/issues/new?body=Problem+with+%27Modernisation+Platform+Runbook%27+%28https%3A%2F%2Fuser-guide.modernisation-platform.service.justice.gov.uk%2Frunbooks%2Frunbook.html%29&amp;labels=bug&amp;title=Re%3A+%27Modernisation+Platform+Runbook%27">Report problem</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../javascripts/application.js"></script>
+  </body>
+</html>

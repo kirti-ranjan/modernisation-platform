@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Accessing EC2s - MoJ Modernisation Platform</title>
+
+    <link href="../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://user-guide.modernisation-platform.service.justice.gov.uk/user-guide/accessing-ec2s.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="user-guide.modernisation-platform.service.justice.gov.uk" />
+      <meta name="twitter:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Accessing EC2s - MoJ Modernisation Platform" />
+      <meta name="twitter:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/user-guide/accessing-ec2s.html" />
+
+      <meta property="og:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="MoJ Modernisation Platform" />
+      <meta property="og:title" content="Accessing EC2s" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/user-guide/accessing-ec2s.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          MoJ Modernisation Platform
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/modernisation-platform">Home</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://github.com/ministryofjustice/modernisation-platform">GitHub</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://mojdt.slack.com/archives/C01A7QK5VM1">Slack</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="../">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://user-guide.modernisation-platform.service.justice.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#accessing-ec2s"><span>Accessing EC2s</span></a>
+    <ul>
+      <li>
+        <a href="#overview"><span>Overview</span></a>
+      </li>
+      <li>
+        <a href="#required-configuration-to-connect-via-session-manager"><span>Required configuration to connect via Session Manager</span></a>
+      </li>
+      <li>
+        <a href="#connecting-to-ami-images-with-the-ssm-agent-installed"><span>Connecting to AMI images with the SSM Agent installed</span></a>
+      </li>
+      <li>
+        <a href="#using-a-bastion-for-older-ami-images"><span>Using a bastion for older AMI images</span></a>
+      </li>
+      <li>
+        <a href="#using-the-bastion-as-a-jump-server-to-access-linux-ec2s"><span>Using the Bastion as a jump server to access Linux EC2s</span></a>
+      </li>
+      <li>
+        <a href="#port-forwarding-to-ec2-using-the-bastion"><span>Port forwarding to EC2 using the bastion</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="accessing-ec2s">Accessing EC2s</h1>
+<h2 id="overview">Overview</h2>
+<p>To connect to EC2s on the Modernisation Platform, we use <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html">AWS Systems Manager Session Manager</a>.
+This enables us to connect to EC2s securely, via AWS SSO, without the need to open ports to the public.</p>
+<h2 id="required-configuration-to-connect-via-session-manager">Required configuration to connect via Session Manager</h2>
+<p>1) Ensure AWS CLI v2 and Session Manager plugin are installed locally. For example, if you&rsquo;re using macOS, you can install the following brew packages:</p>
+
+<ul>
+<li>awscli - Official Amazon AWS command-line interface</li>
+<li>session-manager-plugin - Session Manager Plugin for the AWS CLI</li>
+</ul>
+<p>2) Add the following to your <code>~/.aws/config</code> configuration file. Give the profile name a relevant name for example <code>[profile glados-test-developer]</code> and add the corresponding AWS account number:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>[profile glados-test-developer]
+sso_start_url = https://moj.awsapps.com/start
+sso_region = eu-west-2
+sso_account_id = 123456789
+sso_role_name = modernisation-platform-developer
+region = eu-west-2
+output = json
+
+</code></pre></div><p>3) Log in to SSO using the following command:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code> aws sso login --profile glados-test-developer
+
+</code></pre></div><h2 id="connecting-to-ami-images-with-the-ssm-agent-installed">Connecting to AMI images with the SSM Agent installed</h2>
+<p>Most modern AMIs will already have the SSM Agent installed.  You can connect to these instances directly with Session Manager.</p>
+<p>4) Start a basic Session Manager session</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws ssm start-session --target i-12345bc --profile glados-test-developer
+</code></pre></div><h2 id="using-a-bastion-for-older-ami-images">Using a bastion for older AMI images</h2>
+<p>Older operating systems may not support installation of the SSM Agent, in this case a bastion can be used to forward connections on to the EC2.  Bastions can also be used for port forwarding to connect to databases or private configuration consoles.</p>
+<p>Member accounts can use the <a href="https://github.com/ministryofjustice/modernisation-platform-terraform-bastion-linux">Modernisation Platform bastion module</a> to build a bastion configured with user and user SSH keys.
+Once the bastion has been built in the environemnt, these steps outline the additional AWS and SSH configurations required for users to connect to the bastion and on to their desired EC2 within their environment.</p>
+<p>5) Add the example in this step to your <code>~/.ssh/config</code> file. Give the host a relevant name, for example <code>glados-test-bastion</code>. Replace the <code>User</code> and the <code>IdentityFile</code> path - it is the local path to the corresponding private key of the public key added to the <code>bastion_linux.json</code> file set up as part of the <a href="https://github.com/ministryofjustice/modernisation-platform-terraform-bastion-linux">Modernisation Platform bastion module</a> build. Replace the <code>target</code> with the bastion instance ID in the corresponding AWS account and include the AWS profile created in the previous step:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Host glados-test-bastion
+     IdentityFile ~/.ssh/id_rsa
+     User jane
+     ProxyCommand sh -c "aws ssm start-session --target $(aws ec2 describe-instances --no-cli-pager --filters "Name=tag:Name,Values=bastion_linux" --query 'Reservations[0].Instances[0].InstanceId' --profile glados-test-developer) --document-name AWS-StartSSHSession --parameters 'portNumber=%p' --profile glados-test-developer --region eu-west-2"
+</code></pre></div><p>6) SSH to the bastion using the following command:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ssh glados-test-bastion
+
+</code></pre></div>
+<blockquote>
+<p>Note: If you re-generate your public SSH key, then you will also need to update it in the <code>bastion_linux.json</code> file inside the <code>modernisation-platform-environments</code> repository. Moreover, in order to SSH using your new key you will need to restart your ssh-agent.</p>
+</blockquote>
+<h2 id="using-the-bastion-as-a-jump-server-to-access-linux-ec2s">Using the Bastion as a jump server to access Linux EC2s</h2>
+<p>In addition to the configuration added to the <code>~/.ssh/config</code> file in the step above, add the following to use the bastion as a jump server.
+Replace the Host <code>instanceip</code> with the ip address of the EC2 you need to connect to. The <code>IdentityFile</code> is the local path to the private key assigned to the EC2 instance you are connecting to.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Host instanceip
+    IdentityFile glados-test.pem
+    User ec2-user
+    ProxyCommand ssh -W %h:%p glados-test-bastion
+
+</code></pre></div><p>After adding the configuration above, SSH to your EC2 with the command below:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ssh instanceip
+
+</code></pre></div><h2 id="port-forwarding-to-ec2-using-the-bastion">Port forwarding to EC2 using the bastion</h2>
+<p>Replace ports, IP adddresses, and name of Host as appropriate.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ssh -L 8000:11.11.11.11:80 glados-test-bastion
+
+</code></pre></div>
+              <div data-module='page-expiry' data-last-reviewed-on="2022-08-16">
+    <div class='page-expiry--not-expired'>
+      This page was last reviewed on 16 February 2022.
+
+        It needs to be reviewed again on 16 August 2022
+        by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>
+        .
+    </div>
+
+    <div class='page-expiry--expired'>
+      This page was set to be reviewed before 16 August 2022
+       by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>.
+      This might mean the content is out of date.
+    </div>
+  </div>
+
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/source/user-guide/accessing-ec2s.html.md.erb">View source</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/issues/new?body=Problem+with+%27Accessing+EC2s%27+%28https%3A%2F%2Fuser-guide.modernisation-platform.service.justice.gov.uk%2Fuser-guide%2Faccessing-ec2s.html%29&amp;labels=bug&amp;title=Re%3A+%27Accessing+EC2s%27">Report problem</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../javascripts/application.js"></script>
+  </body>
+</html>

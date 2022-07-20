@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Auto-nuke and redeploy development environments on weekly basis - MoJ Modernisation Platform</title>
+
+    <link href="../../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://user-guide.modernisation-platform.service.justice.gov.uk/concepts/environments/auto-nuke.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="user-guide.modernisation-platform.service.justice.gov.uk" />
+      <meta name="twitter:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Auto-nuke and redeploy development environments on weekly basis - MoJ Modernisation Platform" />
+      <meta name="twitter:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/concepts/environments/auto-nuke.html" />
+
+      <meta property="og:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="MoJ Modernisation Platform" />
+      <meta property="og:title" content="Auto-nuke and redeploy development environments on weekly basis" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/concepts/environments/auto-nuke.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          MoJ Modernisation Platform
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/modernisation-platform">Home</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://github.com/ministryofjustice/modernisation-platform">GitHub</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://mojdt.slack.com/archives/C01A7QK5VM1">Slack</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="../../">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://user-guide.modernisation-platform.service.justice.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#auto-nuke-and-redeploy-development-environments-on-weekly-basis"><span>Auto-nuke and redeploy development environments on weekly basis</span></a>
+    <ul>
+      <li>
+        <a href="#feature-description"><span>Feature description</span></a>
+      </li>
+      <li>
+        <a href="#configuration"><span>Configuration</span></a>
+        <ul>
+          <li>
+            <a href="#when-new-development-environment-is-onboarded"><span>When new development environment is onboarded</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="auto-nuke-and-redeploy-development-environments-on-weekly-basis">Auto-nuke and redeploy development environments on weekly basis</h1>
+<h2 id="feature-description">Feature description</h2>
+<p>This feature automatically nukes and recreates development environments on weekly basis. This is useful for environments with the sandbox permission, which allow users provisioning resources directly through the AWS web console as opposite to using terraform. In such cases, the auto-nuke will make sure the resources created manually will be cleared on weekly basis and only the ones created through terraform will be redeployed.</p>
+<p>Every Sunday:</p>
+
+<ul>
+<li>At 10.00pm the nuke.yml job is triggered. This job nukes all the configured development environments using the AWS Nuke tool (https://github.com/rebuy-de/aws-nuke).</li>
+<li>At 12.00 noon the nuke-redeploy.yml job is triggered. This job redeploys all the nuked environments using terraform apply.</li>
+</ul>
+<p>A sketch of the algorithm is as follows:</p>
+
+<ul>
+<li>For every account ID stored in the nuke_account_ids secret</li>
+<li>Assume the role MemberInfrastructureAccess under the account ID</li>
+<li>Nuke the resources under the account ID</li>
+<li>Perform terraform apply in order to recreate all resources from terraform</li>
+</ul>
+<h2 id="configuration">Configuration</h2>
+<p>Auto-nuke uses the following secrets stored in the AWS secret manager inside the Modernisation Platform account:</p>
+
+<ul>
+<li><code>nuke_account_blocklist</code>: Account IDs to be excluded from auto-nuke. AWS-Nuke (https://github.com/rebuy-de/aws-nuke) requires at least one Account ID to be present in this blocklist, while it is recommended to add every production account to this blocklist. For example:</li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws secretsmanager put-secret-value --region eu-west-2 --secret-id nuke_account_blocklist --profile mod --secret-string '{"NUKE_ACCOUNT_BLOCKLIST":{"PERFORMANCE_HUB_PREPRODUCTION_ACCID":"111111111111","PERFORMANCE_HUB_PRODUCTION_ACCID":"222222222222"}}'
+</code></pre></div>
+<ul>
+<li><code>nuke_account_ids</code>: Account IDs to be auto-nuked on weekly basis. CAUTION: Any account ID you add here will be automatically nuked! This secret is used by GitHub actions job nuke.yml inside the environments repo, to find the Account IDs to be nuked. For example:</li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws secretsmanager put-secret-value --region eu-west-2 --secret-id nuke_account_ids --profile mod --secret-string '{"NUKE_ACCOUNT_IDS":{"COOKER_DEVELOPMENT_ACCID":"111111111111","SPRINKLER_DEVELOPMENT_ACCID":"222222222222","PERFORMANCE_HUB_DEVELOPMENT_ACCID":"333333333333"}}'
+</code></pre></div><p>The following configuration is passed as environment variable inside the <code>nuke-redeploy.yml</code> GitHub actions job:</p>
+
+<ul>
+<li>NUKE_DO_NOT_RECREATE_ENVIRONMENTS: A comma-separated list of terraform workspaces to skip from recreating through terraform after nuking. For example, <code>NUKE_DO_NOT_RECREATE_ENVIRONMENTS: performance-hub-development,example-development,sample-development,</code>. As can be observed in the example, every terraform workspace needs a leading comma, hence the last comma in the list.</li>
+</ul>
+<p>The <code>nuke-config-template.txt</code> holds the nuke configuration YAML with account IDs being abstracted away by variables. For example, during the actual execution, <code>$accounts_str</code> will be replaced by the corresponding account IDs of the development environments that will be nuked. That is because account IDs is sensitive data and cannot be committed into code. Notice the naming convention, which is important, where <code>performance-hub-development</code> account name and terraform workspace is matched to the key <code>PERFORMANCE_HUB_DEVELOPMENT_ACCID</code> inside the JSON value of the <code>nuke_account_ids</code> secret. The key in this case is derived from the account name converted to upper case, hyphens replaced by underscores, and suffixed by <code>_ACCID</code>, hence <code>performance-hub-development</code> is converted to <code>PERFORMANCE_HUB_DEVELOPMENT_ACCID</code>.</p>
+<h3 id="when-new-development-environment-is-onboarded">When new development environment is onboarded</h3>
+<p>When a new development environment is onboarded into the Modernisation Platform, we need to follow these steps, assuming the new account will be granted sandbox permissions and we want it to be auto-nuked on weekly basis:</p>
+
+<ul>
+<li>Manually add the new account ID to the secret <code>nuke_account_ids</code> stored in the AWS secret manager inside the Modernisation Platform account. Refer to the above documentation of <code>nuke_account_ids</code> for the format of the value.</li>
+<li>AWS Nuke will require an account alias, which you can create as follows:</li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws iam list-account-aliases --profile sprinkler-development
+aws iam create-account-alias --profile sprinkler-development --account-alias sprinkler-development
+</code></pre></div><p>If account alias is missing then the <code>nuke.yml</code> job will fail with a relevant error.</p>
+
+              <div data-module='page-expiry' data-last-reviewed-on="2022-10-21">
+    <div class='page-expiry--not-expired'>
+      This page was last reviewed on 21 April 2022.
+
+        It needs to be reviewed again on 21 October 2022
+        by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>
+        .
+    </div>
+
+    <div class='page-expiry--expired'>
+      This page was set to be reviewed before 21 October 2022
+       by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>.
+      This might mean the content is out of date.
+    </div>
+  </div>
+
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/source/concepts/environments/auto-nuke.html.md.erb">View source</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/issues/new?body=Problem+with+%27Auto-nuke+and+redeploy+development+environments+on+weekly+basis%27+%28https%3A%2F%2Fuser-guide.modernisation-platform.service.justice.gov.uk%2Fconcepts%2Fenvironments%2Fauto-nuke.html%29&amp;labels=bug&amp;title=Re%3A+%27Auto-nuke+and+redeploy+development+environments+on+weekly+basis%27">Report problem</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../../javascripts/application.js"></script>
+  </body>
+</html>

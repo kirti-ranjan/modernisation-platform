@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Querying VPC Flow Logs - MoJ Modernisation Platform</title>
+
+    <link href="../stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://user-guide.modernisation-platform.service.justice.gov.uk/runbooks/querying-vpc-flow-logs.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="user-guide.modernisation-platform.service.justice.gov.uk" />
+      <meta name="twitter:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Querying VPC Flow Logs - MoJ Modernisation Platform" />
+      <meta name="twitter:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/runbooks/querying-vpc-flow-logs.html" />
+
+      <meta property="og:image" content="https://user-guide.modernisation-platform.service.justice.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="MoJ Modernisation Platform" />
+      <meta property="og:title" content="Querying VPC Flow Logs" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://user-guide.modernisation-platform.service.justice.gov.uk/runbooks/querying-vpc-flow-logs.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          MoJ Modernisation Platform
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/modernisation-platform">Home</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://github.com/ministryofjustice/modernisation-platform">GitHub</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="https://mojdt.slack.com/archives/C01A7QK5VM1">Slack</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body" data-module="in-page-navigation">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="../">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://user-guide.modernisation-platform.service.justice.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                      <ul>
+  <li>
+    <a href="#querying-vpc-flow-logs"><span>Querying VPC Flow Logs</span></a>
+    <ul>
+      <li>
+        <a href="#our-shared-vpc-approach"><span>Our shared VPC approach</span></a>
+      </li>
+      <li>
+        <a href="#viewing-vpc-flow-logs"><span>Viewing VPC flow logs</span></a>
+      </li>
+      <li>
+        <a href="#understanding-log-entries"><span>Understanding log entries</span></a>
+        <ul>
+          <li>
+            <a href="#viewing-log-entries-through-a-web-browser"><span>Viewing log entries through a web browser</span></a>
+          </li>
+          <li>
+            <a href="#an-example-of-a-vpc-flow-log-entry"><span>An Example of a VPC Flow Log entry</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#references"><span>References</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1 id="querying-vpc-flow-logs">Querying VPC Flow Logs</h1>
+<p>In the course of supporting a <a href="https://user-guide.modernisation-platform.service.justice.gov.uk/user-guide/our-offer-to-you.html">Modernisation Platform customer</a>
+you may need to investigate traffic flows in and our of Elastic Network Interfaces. You can do so by querying VPC flow logs.</p>
+<h2 id="our-shared-vpc-approach">Our shared VPC approach</h2>
+<p>The Modernisation Platform provisions on a per-business unit and per-environment basis. This allows us to provision resources
+on a lean basis, shared between applications and service teams in the same business unit.</p>
+<h2 id="viewing-vpc-flow-logs">Viewing VPC flow logs</h2>
+<p>As a result of our consolidate VPC approach you will not find the relevant customer flow logs by querying the customer account,
+but will instead need to access the relevant <code>core-vpc-$environment</code> account where they will be stored in an AWS CloudWatch log group.</p>
+<p>You can query the flow logs in a variety of ways; with <a href="https://aws.amazon.com/athena/">Amazon Athena</a>,
+though the <a href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/logs/start-query.html">AWS CLI</a>, and in
+the <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#ViewingLogData">AWS Console</a> through a web browser.</p>
+<h2 id="understanding-log-entries">Understanding log entries</h2>
+<p>AWS VPC Flow logs are stored in log streams for each elastic network interface.</p>
+<p>If you are interested in traffic passing in and out of a particular EC2 instance or Elastic Load Balancer you will need
+the relevant Elastic Network Interface ID.</p>
+<p>Inside the log stream you will see, by default, fields showing the source ENI ID, source and destination IP addresses,
+and source and destination ports as well as if the traffic was accepted or rejected by an ACL or Security Group rule.</p>
+<h3 id="viewing-log-entries-through-a-web-browser">Viewing log entries through a web browser</h3>
+
+<ol>
+<li>Sign into the appropriate <code>core-vpc-$environment</code> account through <a href="https://moj.awsapps.com/start">https://moj.awsapps.com/start</a>.</li>
+<li>Browse to <code>CloudWatch &gt; Logs &gt; Log Groups &gt; $business-unit-$environment-vpc-flow-logs</code>.</li>
+<li>Select the ENI you wish to view logs from.</li>
+<li>Narrow down the timeframe of logs with logs you with to view, or apply filters as appropriate.</li>
+</ol>
+<h3 id="an-example-of-a-vpc-flow-log-entry">An Example of a VPC Flow Log entry</h3>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>2 111111111111 eni-aaaaa111111111111 10.0.0.100 10.0.1.100 57442 443 6 7 311 1648219031 1648219031 ACCEPT OK
+</code></pre></div><p>The above entry shows a Type 2 flow log entry, in account <code>111111111111</code> from <code>eni-aaaaa111111111111</code>. The source and
+destination addresses indicate a short HTTPS transaction that was accepted by network ACL and SG rules.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>2 111111111111 eni-aaaaa111111111111 10.0.0.100 1.2.3.4 35535 22 6 3 180 1418530010 1418530070 REJECT OK
+</code></pre></div><p>The above entry shows another Type 2 flow entry, from the same account and ENI. In this entry we see what looks like a
+failed attempt to make an SSH connection to a public IP address.</p>
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="https://user-guide.modernisation-platform.service.justice.gov.uk/user-guide/accessing-the-aws-console.html">Accessing the AWS Console</a></li>
+<li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/working-with-flow-logs.html">Amazon Virtual Private Cloud: Working with flow logs</a></li>
+<li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs.html">AWS VPC Flow Log fields</a></li>
+</ul>
+
+              <div data-module='page-expiry' data-last-reviewed-on="2022-09-25">
+    <div class='page-expiry--not-expired'>
+      This page was last reviewed on 25 March 2022.
+
+        It needs to be reviewed again on 25 September 2022
+        by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>
+        .
+    </div>
+
+    <div class='page-expiry--expired'>
+      This page was set to be reviewed before 25 September 2022
+       by the page owner <a href="https://mojdt.slack.com/messages/modernisation-platform">#modernisation-platform</a>.
+      This might mean the content is out of date.
+    </div>
+  </div>
+
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/blob/main/source/runbooks/querying-vpc-flow-logs.html.md.erb">View source</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform/issues/new?body=Problem+with+%27Querying+VPC+Flow+Logs%27+%28https%3A%2F%2Fuser-guide.modernisation-platform.service.justice.gov.uk%2Frunbooks%2Fquerying-vpc-flow-logs.html%29&amp;labels=bug&amp;title=Re%3A+%27Querying+VPC+Flow+Logs%27">Report problem</a></li>
+                <li><a href="https://github.com/ministryofjustice/modernisation-platform">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="../javascripts/application.js"></script>
+  </body>
+</html>
